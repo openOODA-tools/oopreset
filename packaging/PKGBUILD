@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oopreset-bin
+_pkgname=oopreset
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Exports oote color schemes to Alacritty, Kitty, Foot, Ghostty, and Tmux formats."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oopreset"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oopreset')
+conflicts=('oopreset')
+source_x86_64=("${url}/releases/download/v${pkgver}/oopreset-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oopreset-linux-x86_64" "${pkgdir}/usr/bin/oopreset"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oopreset-uninstall"
+}
